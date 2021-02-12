@@ -24,15 +24,49 @@ defmodule LiveViewStudioWeb.LightLive do
   def render(assigns) do
     ~L"""
     <h1>Front Porch Light</h1>
-    <%= @brightnesss %>
+    <div id="light">
+      <div class="meter">
+        <span style="width: <%= @brightness %>%">
+          <%= @brightness %>
+        </span>
+      </div>
+      <button phx-click="off">
+        <img src="images/light-off.svg"/>
+      </button>
+      <button phx-click="up">
+        <img src="images/up.svg"/>
+      </button>
+      <button phx-click="down">
+        <img src="images/down.svg"/>
+      </button>
+      <button phx-click="on">
+        <img src="images/light-on.svg"/>
+      </button>
+    </div>
+
     """
   end
-#   assign @brightnesss not available in eex template.
 
-# Please make sure all proper assigns have been set. If this
-# is a child template, ensure assigns are given explicitly by
-# the parent template as they are not automatically forwarded.
+  def handle_event("off", _, socket) do
+    socket = assign(socket, :brightness, 0)
+    {:noreply, socket}
+  end
 
-# Available assigns: [:__changed__, :brightness, :flash, :live_action, :socket]
+  def handle_event("on", _, socket) do
+    socket = assign(socket, :brightness, 100)
+    {:noreply, socket}
+  end
+
+  def handle_event("up", _, socket) do
+    brightness = socket.assigns.brightness + 10
+    socket = assign(socket, :brightness, brightness)
+    {:noreply, socket}
+  end
+
+  def handle_event("down", _, socket) do
+    brightness = socket.assigns.brightness - 10
+    socket = assign(socket, :brightness, brightness)
+    {:noreply, socket}
+  end
 
 end
