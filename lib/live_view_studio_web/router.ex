@@ -18,7 +18,7 @@ defmodule LiveViewStudioWeb.Router do
     pipe_through :browser
 
     live "/", PageLive
-    live "/light" LightLive #it is a long running process
+    live "/light", LightLive #it is a long running process
   end
 
   # Other scopes may use custom stacks.
