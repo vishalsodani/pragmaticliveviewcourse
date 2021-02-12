@@ -20,10 +20,19 @@ defmodule LiveViewStudioWeb.LightLive do
     {:ok, socket} #return a tupule
   end
 
+  #this assigns is a map which is part of the socket structure we saw with IO.inspect
   def render(assigns) do
     ~L"""
     <h1>Front Porch Light</h1>
-    <%= @brightness %>
+    <%= @brightnesss %>
     """
   end
+#   assign @brightnesss not available in eex template.
+
+# Please make sure all proper assigns have been set. If this
+# is a child template, ensure assigns are given explicitly by
+# the parent template as they are not automatically forwarded.
+
+# Available assigns: [:__changed__, :brightness, :flash, :live_action, :socket]
+
 end
