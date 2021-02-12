@@ -73,8 +73,7 @@ defmodule LiveViewStudioWeb.LightLive do
   end
 
   def handle_event("random", _, socket) do
-    brightness = :rand.uniform(100)
-    socket = assign(socket, :brightness, brightness)
+    socket = assign(socket, :brightness, Enum.random(0..100))
     {:noreply, socket}
   end
 
